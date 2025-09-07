@@ -27,7 +27,6 @@ const HotCollections = () => {
       { breakpoint: 480, settings: { slidesToShow: 1 } },
     ],
   };
-
   useEffect(() => {
     axios
       .get(
