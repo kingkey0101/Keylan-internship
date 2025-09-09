@@ -46,12 +46,25 @@ const NewItems = () => {
         <div className="container">
           <div className="row">
             <Slider {...settings}>
-
-            {[...Array(7)].map((_, index) => (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-                <Skeleton width="100%" height="300px" borderRadius="12px" />;
-              </div>
-            ))}
+              {[...Array(7)].map((_, index) => (
+                <>
+                  <div
+                    className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
+                    key={index}
+                  >
+                    <Skeleton width="100%" height="300px" borderRadius="12px" />
+                  </div>
+                  <div className="author_list_pp">
+                    <Skeleton width="40px" height="40px" borderRadius="50%" />
+                  </div>
+                  <div className="nft__item_wrap">
+                    <Skeleton width="80%" height="20px" borderRadius="4px" />
+                  </div>
+                  <div className="nft__item_info">
+                    <Skeleton width="60%" height="16px" borderRadius="4px" />
+                  </div>
+                </>
+              ))}
             </Slider>
           </div>
         </div>
