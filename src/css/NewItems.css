@@ -1,6 +1,4 @@
-/* Force Slick arrows to be visible */
-
-
+/* Reuse slick arrow styles */
 .slick-arrow {
     display: block !important;
     z-index: 20;
@@ -25,11 +23,6 @@
     right: 20px;
 }
 
-.slider__container {
-    position: relative;
-}
-
-/* === NewItems compatibility === */
 
 .nft__item {
     padding: 10px;
@@ -47,54 +40,12 @@
     margin: 8px 0 4px;
 }
 
-.nft__item_info span,
-.nft__item_price {
+.nft__item_info span {
     font-size: 14px;
     color: #666;
 }
 
-.nft__item_preview {
-    display: block;
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-
-
 @media (max-width: 768px) {
-    .nft_coll {
-        padding: 10px;
-        text-align: center;
-    }
-
-    .nft_wrap img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-    }
-
-    .nft_coll_pp {
-        margin-top: 10px;
-    }
-
-    .pp-coll {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-    }
-
-    .nft_coll_info h4 {
-        font-size: 16px;
-        margin: 8px 0 4px;
-    }
-
-    .nft_coll_info span {
-        font-size: 14px;
-        color: #666;
-    }
-
     .slick-arrow {
         width: 30px;
         height: 30px;
@@ -108,16 +59,12 @@
     .slick-next {
         right: 10px;
     }
-}
 
-@media (max-width: 480px) {
-
-
-    .nft_coll_info h4 {
+    .nft__item_info h4 {
         font-size: 14px;
     }
 
-    .nft_coll_info span {
+    .nft__item_info span {
         font-size: 12px;
     }
 }
