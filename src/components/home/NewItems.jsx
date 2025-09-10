@@ -8,41 +8,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../css/HotCollections.css";
-
-const useCountdown = (expiryDate) => {
-  const [timeLeft, setTimeLeft] = useState("");
-  const intervalRef = useRef(null);
-  const isMounted = useRef(true);
-
-  useEffect(() => {
-    isMounted.current = true;
-    if (!expiryDate) return;
-    const target = new Date(expiryDate).getTime();
-    intervalRef.current = setInterval(() => {
-      const now = new Date().getTime();
-      const diff = target - now;
-
-      if (diff < 0) {
-        if (isMounted.current) setTimeLeft("Expired");
-        clearInterval(intervalRef.current);
-        return;
-      }
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-      if (isMounted.current) {
-        setTimeLeft(`${hours}h ${minutes}m ${seconds}s`);
-      }
-    }, 1000);
-    return () => {
-      isMounted.current = false;
-      clearInterval(intervalRef.current);
-    };
-  }, [expiryDate]);
-  return timeLeft;
-};
+import CountdownTimer from "../CountdownTimer";
 
 const NewItems = () => {
+  const isMounted = useRef(true);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -62,6 +31,7 @@ const NewItems = () => {
   };
 
   useEffect(() => {
+    isMounted.current = true;
     axios
       .get(
         "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
@@ -71,9 +41,15 @@ const NewItems = () => {
         setLoading(false);
       })
       .catch((error) => {
-        setError(error);
-        setLoading(false);
+        if (isMounted.current) {
+          setError(error);
+          setLoading(false);
+        }
       });
+
+    return () => {
+      isMounted.current = false;
+    };
   }, []);
 
   if (loading) {
@@ -90,21 +66,28 @@ const NewItems = () => {
             <div className="col-12 slider__container">
               <Slider {...settings}>
                 {[...Array(7)].map((_, index) => (
-                  <div
-                    className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                    key={index}
-                  >
-                    <Skeleton width="100%" height="300px" borderRadius="12px" />
-                    <div className="author_list_pp">
-                      <Skeleton width="40px" height="40px" borderRadius="50%" />
-                      <div className="nft__item_wrap">
+                  <div key={index}>
+                    <div className="nft_coll">
+                      <div className="nft_wrap">
+                        <Skeleton
+                          width="100%"
+                          height="200px"
+                          borderRadius="8px"
+                        />
+                      </div>
+                      <div className="nft_coll_pp">
+                        <Skeleton
+                          width="40px"
+                          height="40px"
+                          borderRadius="50%"
+                        />
+                      </div>
+                      <div className="nft_coll_info">
                         <Skeleton
                           width="80%"
                           height="20px"
                           borderRadius="4px"
                         />
-                      </div>
-                      <div className="nft__item_info">
                         <Skeleton
                           width="60%"
                           height="16px"
@@ -137,7 +120,6 @@ const NewItems = () => {
               <div className="col-12 slider__container">
                 <Slider {...settings}>
                   {data.slice(0, 6).map((item, index) => {
-                    const timeLeft = useCountdown(item.expiryDate);
                     return (
                       <div key={index}>
                         <div className="nft__item">
@@ -156,7 +138,7 @@ const NewItems = () => {
                           </div>
 
                           {item.expiryDate && (
-                            <div className="de_countdown">{timeLeft}</div>
+                            <CountdownTimer expiryDate={item.expiryDate} />
                           )}
                           <div className="nft__item_wrap">
                             <div className="nft__item_extra">
@@ -189,7 +171,7 @@ const NewItems = () => {
                             <Link to={`/item-details/${item.nftId}`}>
                               <h4>{item.title || "Untitled"}</h4>
                             </Link>
-                            <div className="nft__item_price">{item.price}</div>
+                            <div className="nft__item_price">{item.price} ETH</div>
                             <div className="nft__item_like">
                               <i className="fa fa-heart"></i>
                               <span>{item.likes}</span>

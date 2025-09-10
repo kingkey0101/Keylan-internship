@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
@@ -13,6 +13,8 @@ const HotCollections = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const isMounted = useRef(true);
+
   const settings = {
     dots: false,
     infinite: true,
@@ -37,9 +39,14 @@ const HotCollections = () => {
         setLoading(false);
       })
       .catch((error) => {
-        setError(error);
-        setLoading(false);
+        if (isMounted) {
+          setError(error);
+          setLoading(false);
+        }
       });
+    return () => {
+      isMounted = false;
+    };
   }, []);
   if (loading) {
     return (
