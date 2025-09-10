@@ -20,15 +20,25 @@
 
 .slick-prev {
     left: 20px;
+    font-display: none;
+
 }
 
 .slick-next {
     right: 20px;
+    font-display: none;
+
+
 }
 
 .slider__container {
     position: relative;
 }
+
+/* tried overriding Slick arrow text w/ custom components and CSS - fallback text still shows on mobile view */
+
+
+
 
 
 @media (max-width: 768px) {
@@ -71,11 +81,21 @@
 
     .slick-prev {
         left: 10px;
+        font-display: none;
     }
 
     .slick-next {
         right: 10px;
+        font-display: none;
     }
+
+    .slick-prev::before,
+    .slick-next::before {
+        display: block;
+        font-display: none;
+        opacity: 1 !important;
+    }
+
 }
 
 @media (max-width: 480px) {
@@ -88,4 +108,17 @@
     .nft_coll_info span {
         font-size: 12px;
     }
+
+    .slick-prev {
+        left: 10px;
+        font-display: none;
+    }
+
+    .slick-next {
+        right: 10px;
+        font-display: none;
+    }
+
+
+
 }
