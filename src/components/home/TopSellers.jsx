@@ -4,6 +4,7 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
 
+
 const TopSellers = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
