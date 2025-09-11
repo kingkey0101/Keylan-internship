@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
 
 const AuthorItems = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [author] = 
+
+  useEffect = (() => {
+    setLoading(true);
+    const base =
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/author";
+    const url = author ? `${base}?author=${author}` : base;
+
+    axios
+      .get(url)
+      .then((response) => {
+        setData(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+  }, [author]);
+
   return (
     <div className="de_tab_content">
       <div className="tab-1">
