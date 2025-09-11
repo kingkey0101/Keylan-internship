@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Skeleton from "../UI/Skeleton";
 import NftCard from "../UI/NftCard";
+import Filter from "../Filter";
 
 const ExploreItems = () => {
+  const [searchParams] = useSearchParams();
+  const filter = searchParams.get("filter" || ""); //price_low_to_high etc.
+
   const [data, setData] = useState([]); // [] over null -> won't have null data
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [visibleCount, setVisibleCount] = useState(8);
-  const [filter, setFilter] = useState("");
+  // const [filter, setFilter] = useState("");
 
   useEffect(() => {
+    setLoading(true);
+    const base =
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+    const url = filter ? `${base}?filter=${filter}` : base;
+
     axios
-      .get("https://us-central1-nft-cloud-functions.cloudfunctions.net/explore")
+      .get(url)
       .then((response) => {
         setData(response.data);
         setLoading(false);
@@ -22,17 +31,8 @@ const ExploreItems = () => {
         setError(error);
         setLoading(false);
       });
-  }, []);
+  }, [filter]);
 
-  const filteredData = [...data];
-
-  if (filter === "price_low_to_high") {
-    filteredData.sort((a, b) => a.price - b.price);
-  } else if (filter === "price_high_to_low") {
-    filteredData.sort((a, b) => b.price - a.price);
-  } else if (filter === "likes_high_to_low") {
-    filteredData.sort((a, b) => b.likes - a.likes);
-  }
   if (error) {
     return (
       <div className="text-center p-5">
@@ -46,17 +46,9 @@ const ExploreItems = () => {
       <div className="container">
         <div className="row">
           <div className="col-12 mb-4">
-            <select
-              id="filter-items"
-              value={filter}
-              onChange={(event) => setFilter(event.target.value)}
-            >
-              <option value="">Default</option>
-              <option value="price_low_to_high">Price, Low to High</option>
-              <option value="price_high_to_low">Price, High to Low</option>
-              <option value="likes_high_to_low">Most liked</option>
-            </select>
+            <Filter id="filter-items" className="form-select" />
           </div>
+          {/* loading state */}
 
           {loading
             ? Array.from({ length: visibleCount }).map((_, index) => (
@@ -83,7 +75,7 @@ const ExploreItems = () => {
                   </div>
                 </div>
               ))
-            : filteredData.slice(0, visibleCount).map((item) => (
+            : data.slice(0, visibleCount).map((item) => (
                 <div
                   key={item.nftId}
                   className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
@@ -92,7 +84,8 @@ const ExploreItems = () => {
                   <NftCard item={item} />
                 </div>
               ))}
-          {visibleCount < filteredData.length && (
+          {/* load more */}
+          {visibleCount < data.length && (
             <div className="col-md-12 text-center">
               <Link
                 to=""
