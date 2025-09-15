@@ -35,18 +35,21 @@ const HotCollections = () => {
         "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
       )
       .then((response) => {
-        setData(response.data);
-        setLoading(false);
+        if(isMounted.current){
+
+          setData(response.data);
+          setLoading(false);
+        }
       })
       .catch((error) => {
-        if (isMounted) {
+        if (isMounted.current) {
           setError(error);
           setLoading(false);
         }
       });
-    return () => {
-      isMounted = false;
-    };
+    return (() => {
+      isMounted.current = false;
+    });
   }, []);
   if (loading) {
     return (
