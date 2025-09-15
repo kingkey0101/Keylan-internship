@@ -9,13 +9,20 @@ import Skeleton from "../components/UI/Skeleton";
 const Author = () => {
   const { id: authorParam } = useParams();
 
-  const [data, setData] = useState([]); //can't read prop of null leave as []
+  const [data, setData] = useState({
+    authorId: "",
+    authorName: "",
+    authorImage: "",
+    followers: 0,
+    tag: "",
+    address: "",
+    nftCollection: [],
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   // const [follows, setFollows] = useState(0);
   const [isFollowing, setIsFollowing] = useState(false);
   const [followerCount, setFollowerCount] = useState(0);
-
 
   useEffect(() => {
     let isMounted = true;
@@ -43,7 +50,6 @@ const Author = () => {
       isMounted = false;
     };
   }, [authorParam]);
-
 
   useEffect(() => {
     if (data?.followers !== null) {
@@ -141,18 +147,16 @@ const Author = () => {
                       <button
                         className="btn-main"
                         onClick={() => {
-                          if(isFollowing){
-                            setFollowerCount(data.followers)
-                            setIsFollowing(false)
-                          }
-                          else{
-                            setFollowerCount( c => c + 1)
-                            setIsFollowing(true)
+                          if (isFollowing) {
+                            setFollowerCount(data.followers);
+                            setIsFollowing(false);
+                          } else {
+                            setFollowerCount((c) => c + 1);
+                            setIsFollowing(true);
                           }
                         }}
                       >
                         {isFollowing ? "Unfollow" : "Follow"}
-                        
                       </button>
                     </div>
                   </div>
@@ -161,11 +165,11 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems 
-                  items={nftCollection} 
-                  authoerId={authorId}
-                  authorName={authorName}
-                  authorImage={authorImage}
+                  <AuthorItems
+                    items={nftCollection}
+                    authoerId={authorId}
+                    authorName={authorName}
+                    authorImage={authorImage}
                   />
                 </div>
               </div>
