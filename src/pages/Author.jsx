@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
 import Skeleton from "../components/UI/Skeleton";
 
@@ -20,16 +19,13 @@ const Author = () => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // const [follows, setFollows] = useState(0);
   const [isFollowing, setIsFollowing] = useState(false);
   const [followerCount, setFollowerCount] = useState(0);
 
   useEffect(() => {
     let isMounted = true;
     setLoading(true);
-    // const baseURL =
     const url = `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorParam}`;
-    // const url = authorParam ? `${baseURL}?author=${authorParam}` : baseURL;
 
     axios
       .get(url)
