@@ -4,11 +4,16 @@ import AuthorImageFallback from "../../images/author_thumbnail.jpg";
 import NftImageFallback from "../../images/nftImage.jpg";
 import CountdownTimer from "../CountdownTimer";
 
-const NftCard = ({item}) => {
+const NftCard = ({
+  item,
+  authorId: pageAuthorId,
+  authorName: pageAuthorName,
+  authorImage: pageAuthorImage,
+}) => {
   const {
-    authorId,
-    authorName,
-    authorImage,
+    authorId: itemAuthorId,
+    authorName: itemAuthorName,
+    authorImage: itemAuthorImage,
     nftId,
     nftImage,
     title,
@@ -17,14 +22,21 @@ const NftCard = ({item}) => {
     expiryDate,
   } = item;
 
+  const cardAuthorId = itemAuthorId || pageAuthorId;
+  const cardAuthorName = itemAuthorName || pageAuthorName;
+  const cardAuthorImage = itemAuthorImage || pageAuthorImage;
+
   return (
     <div className="nft__item">
       <div className="author_list_pp">
-        <Link to={`/author/${authorId}`} title={`Creator:${authorName}`}>
+        <Link
+          to={`/author/${cardAuthorId}`}
+          title={`Creator:${cardAuthorName}`}
+        >
           <img
             className="lazy"
-            src={authorImage || AuthorImageFallback}
-            alt={authorName}
+            src={cardAuthorImage || AuthorImageFallback}
+            alt={cardAuthorName}
           />
           <i className="fa fa-check"></i>
         </Link>
