@@ -37,7 +37,6 @@ const ItemDetails = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-6 text-center">
-
               {/* skeleton img */}
 
               <Skeleton width="100%" height="300px" borderRadius="8px" />
@@ -91,8 +90,10 @@ const ItemDetails = () => {
     nftImage,
     ownerName,
     ownerImage,
+    ownerId,
     creatorName,
     creatorImage,
+    creatorId,
     price,
     likes,
     views,
@@ -115,20 +116,17 @@ const ItemDetails = () => {
               </div>
               <div className="col-md-6">
                 <div className="item_info">
-
                   {/* title */}
 
                   <h2>{title}</h2>
                   <div className="item_info_counts">
                     <div className="item_info_views">
-
                       {/* views */}
 
                       <i className="fa fa-eye"></i>
                       {views}
                     </div>
                     <div className="item_info_like">
-
                       {/* likes */}
 
                       <i className="fa fa-heart"></i>
@@ -144,10 +142,9 @@ const ItemDetails = () => {
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-
                           {/* owner image  */}
 
-                          <Link to="/author">
+                          <Link to={`/author/${ownerId}`}>
                             <img
                               className="lazy"
                               src={ownerImage}
@@ -157,10 +154,9 @@ const ItemDetails = () => {
                           </Link>
                         </div>
                         <div className="author_list_info">
-
                           {/* owner name */}
 
-                          <Link to="/author">{ownerName}</Link>
+                          <Link to={`/author/${ownerId}`}>{ownerName}</Link>
                         </div>
                       </div>
                     </div>
@@ -171,26 +167,24 @@ const ItemDetails = () => {
                       <h6>Creator</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-
                           {/* creator image */}
 
-                          <Link to="/author">
+                          <Link to={`/author/${creatorId}`}>
                             <img className="lazy" src={creatorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-
                           {/* creator name */}
 
-                          <Link to="/author">{creatorName}</Link>
+                          <Link to={`/author/${creatorId}`}>{creatorName}</Link>
                         </div>
                       </div>
                     </div>
                     <div className="spacer-40"></div>
 
                     {/* price */}
-                    
+
                     <h6>Price</h6>
                     <div className="nft-item-price">
                       <img src={EthImage} alt="" />
