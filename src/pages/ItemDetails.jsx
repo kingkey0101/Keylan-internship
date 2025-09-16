@@ -69,7 +69,6 @@ const ItemDetails = () => {
                 {/* skeleton creator */}
 
                 <div className="d-flex align-items-center mb-3">
-                  <Skeleton width="50%" height="50px" borderRadius="50%" />
                   <Skeleton width="120px" height="16px" className="mt-3" />
                 </div>
 
