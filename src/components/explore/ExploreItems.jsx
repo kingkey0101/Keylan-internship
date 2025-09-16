@@ -5,6 +5,9 @@ import Skeleton from "../UI/Skeleton";
 import NftCard from "../UI/NftCard";
 import Filter from "../Filter";
 
+
+//For merge - after animation - For merge
+
 const ExploreItems = () => {
   const [searchParams] = useSearchParams();
   const filter = searchParams.get("filter" || ""); //price_low_to_high etc.
