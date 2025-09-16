@@ -8,6 +8,8 @@ import Filter from "../Filter";
 
 //For merge - after animation - For merge
 
+// FROM MAIN!!! DO NOT REMOVE!!!
+
 const ExploreItems = () => {
   const [searchParams] = useSearchParams();
   const filter = searchParams.get("filter" || ""); //price_low_to_high etc.
