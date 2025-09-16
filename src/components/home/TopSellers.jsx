@@ -4,7 +4,6 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
 
-
 const TopSellers = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -27,7 +26,7 @@ const TopSellers = () => {
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
-        <div className="row">
+        <div data-aos="fade-in" className="row">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Top Sellers</h2>
@@ -74,7 +73,6 @@ const TopSellers = () => {
                       </div>
                       <div className="author_list_info">
                         <Link to={`/author/${item.authorId}`}>
-                          
                           {item.authorName}
                         </Link>
                         <span>{item.price} ETH</span>
