@@ -13,7 +13,6 @@ const ExploreItems = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [visibleCount, setVisibleCount] = useState(8);
-  // const [filter, setFilter] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -43,7 +42,7 @@ const ExploreItems = () => {
 
   return (
     <>
-      <div className="container">
+      <div data-aos='fade-in' className="container">
         <div className="row">
           <div className="col-12 mb-4">
             <Filter id="filter-items" className="form-select" />
