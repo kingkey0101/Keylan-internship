@@ -38,8 +38,8 @@ const Landing = () => {
               <Link
                 className="btn-main lead"
                 to="/explore"
-                data-aos="fade-up"
-                data-aos-delay="800"
+                data-aos="fade-in"
+                data-aos-delay="950"
               >
                 Explore
               </Link>
@@ -52,7 +52,7 @@ const Landing = () => {
                 className="lazy img-fluid"
                 alt=""
                 data-aos="fade-in"
-                data-aos-delay="1150"
+                data-aos-delay="1000"
               />
             </div>
           </div>
