@@ -35,8 +35,7 @@ const HotCollections = () => {
         "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
       )
       .then((response) => {
-        if(isMounted.current){
-
+        if (isMounted.current) {
           setData(response.data);
           setLoading(false);
         }
@@ -47,15 +46,15 @@ const HotCollections = () => {
           setLoading(false);
         }
       });
-    return (() => {
+    return () => {
       isMounted.current = false;
-    });
+    };
   }, []);
   if (loading) {
     return (
       <section id="section-collections" className="no-bottom">
         <div className="container">
-          <div className="row">
+          <div data-aos="fade-in" className="row">
             <div className="col-lg-12 text-center">
               <h2>Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
@@ -107,7 +106,7 @@ const HotCollections = () => {
     <>
       <section id="section-collections" className="no-bottom">
         <div className="container">
-          <div className="row">
+          <div data-aos="fade-in" className="row">
             <div className="col-lg-12">
               <div className="text-center">
                 <h2>Hot Collections</h2>
