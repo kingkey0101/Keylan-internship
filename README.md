@@ -13,7 +13,7 @@
 ---
 
 ## Tech Stack
-- **Frontend:** React.js, TailwindCSS, JavaScript (ES6+), 
+- **Frontend:** React.js, TailwindCSS, JavaScript (ES6+)
 - **Animations:** React Slick, Axios, AOS (Animate On Scroll)  
 - **Optimization:** Lazy loading, custom arrow components  
 - **Deployment:** Vercel  
