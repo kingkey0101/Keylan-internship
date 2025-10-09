@@ -30,6 +30,22 @@
 
 ---
 
+---
+
+## Lighthouse Performance
+
+| Metric | Desktop | Mobile |
+|:--|:--:|:--:|
+| **Performance** | 85 | 39 |
+| **Accessibility** | 80 | 80 |
+| **Best Practices** | 100 | 100 |
+| **SEO** | 83 | 83 |
+
+**Important:** This fork does not control the live deployment; Lighthouse issues shown are due to upstream build/hosting and external assets and cannot be resolved here.
+
+
+<sub>Tested with Chrome Lighthouse — Vercel live build, default network conditions.  Runs repeated twice; reported score is the lower result of two consecutive Lighthouse audits.</sub>
+
 ## Key Takeaways
 - Integrated animation libraries for performance and aesthetics  
 - Enhanced user engagement through smooth visual transitions  
