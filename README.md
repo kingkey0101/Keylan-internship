@@ -2,8 +2,7 @@
 
 ### React · Web3-Style UI · AOS · React Slick
 
-[Live Demo](https://keylan-internship-nft.vercel.app/)  
-[Repository](https://github.com/kingkey0101/Keylan-internship)
+[Live Demo](https://keylan-internship-nft.vercel.app/) • [Repository](https://github.com/kingkey0101/Keylan-internship)
 
 ---
 
