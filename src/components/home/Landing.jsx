@@ -50,7 +50,7 @@ const Landing = () => {
               <img
                 src={NFT}
                 className="lazy img-fluid"
-                alt=""
+                alt="nft"
                 data-aos="fade-in"
                 data-aos-delay="1000"
               />

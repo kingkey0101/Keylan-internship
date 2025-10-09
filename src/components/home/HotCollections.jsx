@@ -125,7 +125,7 @@ const HotCollections = () => {
                               <img
                                 src={item.nftImage || nftImage}
                                 className="lazy img-fluid"
-                                alt=""
+                                alt="nftimg"
                               />
                             </Link>
                           </div>
@@ -134,7 +134,7 @@ const HotCollections = () => {
                               <img
                                 className="lazy pp-coll"
                                 src={item.authorImage || AuthorImage}
-                                alt=""
+                                alt="authorimg"
                               />
                             </Link>
                             <i className="fa fa-check"></i>
